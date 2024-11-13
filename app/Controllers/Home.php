@@ -6,6 +6,10 @@ class Home extends BaseController
 {
     public function index(): string
     {
-        return view('welcome_message');
+        $data = [
+            'title' => 'pmhdv',
+        ];
+
+        return $this->render('welcome_message', $data);
     }
 }

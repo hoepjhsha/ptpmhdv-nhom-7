@@ -2,11 +2,15 @@
 
 namespace App\Controllers;
 
+use App\Libraries\Twig;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
+use CodeIgniter\Session\Session;
+use Config\Services;
+use Exception;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -43,16 +47,61 @@ abstract class BaseController extends Controller
      */
     // protected $session;
 
+    protected Session $session;
+
+    /**
+     * @var Twig Twig instance
+     */
+    protected Twig $twig;
+
+    /**
+     * Defines the Twig configuration.
+     * This array contains all the defined Twig configuration params.
+     *
+     * Examples:
+     *
+     * ```
+     * $twig = [
+     *      'functions' => ['my_helper'],
+     *      'safeFunctions' => ['my_safe_helper'],
+     *      'filters' => ['my_filter'],
+     * ]
+     *```
+     *
+     * @see https://twig.symfony.com/doc/3.x/api.html#environment-options
+     */
+    protected array $twigConfig = [];
+
     /**
      * @return void
      */
-    public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
+    public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger): void
     {
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);
 
         // Preload any models, libraries, etc, here.
+        $this->twig    = Services::twig($this->twigConfig);
+        $this->session = Services::session();
 
         // E.g.: $this->session = \Config\Services::session();
+    }
+
+    /**
+     * Twig renderer.
+     */
+    protected function render(
+        string $view,
+        array $data = []
+    ): string {
+        try {
+            return $this->twig->render($view, $data);
+        } catch (Exception $e) {
+            if (ENVIRONMENT !== 'production') {
+                return $e->getMessage();
+            }
+
+            return '';
+        }
     }
 }

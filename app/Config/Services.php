@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Libraries\Twig;
 use CodeIgniter\Config\BaseService;
 
 /**
@@ -29,4 +30,16 @@ class Services extends BaseService
      *     return new \CodeIgniter\Example();
      * }
      */
+
+    /**
+     * Create Twig service.
+     */
+    public static function twig(array $config = [], bool $getShared = true): object
+    {
+        if ($getShared) {
+            return static::getSharedInstance('twig', $config);
+        }
+
+        return new Twig($config);
+    }
 }
