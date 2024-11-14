@@ -21,11 +21,11 @@ class FlagMiddleware implements FilterInterface
     public function before(RequestInterface $request, $arguments = null): void
     {
         // TODO: Implement before() method.
-//        if (! session()->get('user')) {
-//            throw PermissionException::forUnauthorized();
-//        }
-//
-//        $user_flag = session()->get('user')['flag'];
+        //        if (! session()->get('user')) {
+        //            throw PermissionException::forUnauthorized();
+        //        }
+        //
+        //        $user_flag = session()->get('user')['flag'];
     }
 
     /**

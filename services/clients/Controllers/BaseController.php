@@ -6,7 +6,7 @@
  * @time 11:20
  */
 
-namespace Controllers;
+namespace Client\Controllers;
 
 use App\Controllers\BaseController as Controller;
 
@@ -28,5 +28,7 @@ class BaseController extends Controller
      *
      * @see https://twig.symfony.com/doc/3.x/api.html#environment-options
      */
-    protected array $twigConfig = [];
+    protected array $twigConfig = [
+        'paths' => [CLIENT_PATH . 'Views'],
+    ];
 }
