@@ -9,11 +9,8 @@ class AuthMiddleware implements \CodeIgniter\Filters\FilterInterface
      */
     public function before(\CodeIgniter\HTTP\RequestInterface $request, $arguments = null)
     {
-        $router = service('router');
-        if ($router->methodName() !== 'login') {
-            if (! session()->get('user')) {
-                return response()->redirect('auth/login');
-            }
+        if (! session()->get('user')) {
+            return response()->redirect('/auth/login');
         }
     }
 

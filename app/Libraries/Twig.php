@@ -1,7 +1,6 @@
 <?php
 /**
  * @project ptpmhdv-nhom-7
- * @author hoepjhsha
  * @email hiepnguyen3624@gmail.com
  * @date 13/11/2024
  * @time 18:49
@@ -220,7 +219,7 @@ class Twig
         $this->addFunctions();
         $this->addFilters();
 
-        $view .= '.twig.php';
+        $view .= '.twig';
 
         return $this->twig->render($view, $params);
     }
@@ -290,10 +289,10 @@ class Twig
         );
 
         if (! in_array(
-                'anchor',
-                $functions,
-                true
-            ) && function_exists('anchor')) {
+            'anchor',
+            $functions,
+            true
+        ) && function_exists('anchor')) {
             $this->twig->addFunction(
                 new TwigFunction(
                     'anchor',

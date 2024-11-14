@@ -25,7 +25,7 @@ class CreateTableAccounts extends Migration
             'flag' => [
                 'type'    => 'SMALLINT',
                 'default' => 2,
-                'comment' => '0: admin, 1: teacher, 2: student',
+                'comment' => '0: root, 1: admin, 2: user',
             ],
             'status' => [
                 'type'    => 'SMALLINT',

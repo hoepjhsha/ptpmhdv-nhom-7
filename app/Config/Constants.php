@@ -13,7 +13,17 @@
  | NOTE: changing this will require manually modifying the
  | existing namespaces of App\* namespaced-classes.
  */
-defined('APP_NAMESPACE') || define('APP_NAMESPACE', 'App');
+defined('APP_NAMESPACE')  || define('APP_NAMESPACE', 'App');
+defined('AUTH_NAMESPACE') || define('AUTH_NAMESPACE', 'Auth');
+
+/*
+ | --------------------------------------------------------------------
+ | Module Path
+ | --------------------------------------------------------------------
+ |
+ | Define the module path
+ */
+defined('AUTH_PATH') || define('AUTH_PATH', ROOTPATH . '/authentication/');
 
 /*
  | --------------------------------------------------------------------------

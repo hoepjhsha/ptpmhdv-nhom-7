@@ -14,9 +14,9 @@ class AccountModel extends Model
     final public const int STATUS_ACTIVE   = 1;
     final public const int STATUS_DRAFT    = 2;
     final public const array FLAGS         = [
-        '0' => 'Administrator',
-        '1' => 'Teacher',
-        '2' => 'Student',
+        '0' => 'Super Admin',
+        '1' => 'Admin',
+        '2' => 'User',
     ];
 
     protected $table         = 'accounts';
@@ -33,15 +33,15 @@ class AccountModel extends Model
         'updated_at',
     ];
     protected $validationRules = [
-        'username' => 'required|alpha_numeric_space|',
+        'username' => 'required|alpha_numeric',
         'password' => 'required',
-        'flag'     => 'in_list[0,1]',
-        'status'   => 'in_list[0,1,2]',
+        'flag'     => 'in_list[0,1,2]',
+        'status'   => 'in_list[0,1]',
     ];
     protected $validationMessages = [
         'username' => [
-            'required'            => 'Username is required.',
-            'alpha_numeric_space' => 'Username must be alphanumeric and space-separated.',
+            'required'      => 'Username is required.',
+            'alpha_numeric' => 'Username must be alphanumeric.',
         ],
         'password' => [
             'required' => 'Password is required.',
