@@ -34,15 +34,15 @@
 
                 {% if error is not null %}
                     <div class="alert alert-danger" role="alert"> {{ error }} </div>
-                {% elseif sessionMessages.errors is not null %}
+                {% elseif errors is not null %}
                     <div class="alert alert-danger" role="alert">
-                        {% if sessionMessages.errors is iterable %}
-                            {% for error in sessionMessages.errors %}
+                        {% if errors is iterable %}
+                            {% for error in errors %}
                                 {{ error }}
                                 <br>
                             {% endfor %}
                         {% else %}
-                            {{ sessionMessages.errors }}
+                            {{ errors }}
                         {% endif %}
                     </div>
                 {% endif %}

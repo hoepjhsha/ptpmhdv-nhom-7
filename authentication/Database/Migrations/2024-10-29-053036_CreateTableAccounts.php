@@ -16,6 +16,7 @@ class CreateTableAccounts extends Migration
             ],
             'username' => [
                 'type'       => 'VARCHAR',
+                'unique'     => true,
                 'constraint' => 255,
             ],
             'password' => [

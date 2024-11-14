@@ -22,10 +22,12 @@ class Register extends BaseController
             'csrf_field' => csrf_field(),
             'title'      => 'Register',
             'error'      => session()->get('error'),
+            'errors'     => session()->get('errors'),
             'success'    => session()->get('success'),
         ];
         session()->remove('error');
         session()->remove('success');
+        session()->remove('errors');
 
         return $this->render('register', $data);
     }
