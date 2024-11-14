@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Libraries\PermissionException;
 use CodeIgniter\Events\Events;
 use CodeIgniter\Exceptions\FrameworkException;
 use CodeIgniter\HotReloader\HotReloader;
@@ -52,4 +53,17 @@ Events::on('pre_system', static function (): void {
             });
         }
     }
+
+    /**
+     * Event handler for permission exceptions
+     */
+    set_exception_handler(static function ($exception) {
+        if ($exception instanceof PermissionException) {
+            $response = service('response');
+            $response->setStatusCode(403);
+            echo view('errors/html/error_403', ['message' => $exception->getMessage()]);
+
+            exit;
+        }
+    });
 });

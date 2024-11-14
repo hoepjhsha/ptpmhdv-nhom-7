@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from codebasket.xyz/template/revel_ecom/dashboard-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 20 Oct 2024 18:21:36 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | PMHDV</title>
+
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/dashboard/assets/vendor/css/all.min.css">
+    <link rel="stylesheet" href="/dashboard/assets/vendor/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="/dashboard/assets/vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/dashboard/assets/css/style.css">
+    <link rel="stylesheet" id="primaryColor" href="/dashboard/assets/css/orange-color.css">
+    <link rel="stylesheet" id="rtlStyle" href="#">
+</head>
+<body class="light-theme">
+
+<!-- main content start -->
+<div class="main-content login-panel">
+    <div class="login-body">
+        <div class="top d-flex justify-content-between align-items-center">
+            <div class="logo">
+                <img src="/dashboard/assets/images/logo-black.png" alt="Logo">
+            </div>
+            <a href=""><i class="fa-duotone fa-house-chimney"></i></a>
+        </div>
+        <div class="bottom">
+            {% block content %}
+
+                <h3 class="panel-title">{{ title }}</h3>
+
+                {% if error is not null %}
+                    <div class="alert alert-danger" role="alert"> {{ error }} </div>
+                {% elseif sessionMessages.errors is not null %}
+                    <div class="alert alert-danger" role="alert">
+                        {% if sessionMessages.errors is iterable %}
+                            {% for error in sessionMessages.errors %}
+                                {{ error }}
+                                <br>
+                            {% endfor %}
+                        {% else %}
+                            {{ sessionMessages.errors }}
+                        {% endif %}
+                    </div>
+                {% endif %}
+
+                {% if success is not null %}
+                    <div class="alert alert-success" role="alert"> {{ success }} </div>
+                {% endif %}
+
+            {% endblock %}
+        </div>
+    </div>
+
+    <!-- footer start -->
+    <div class="footer">
+        <p>Copyright© <script>document.write(new Date().getFullYear())</script> All Rights Reserved By <span class="text-primary">Team 7</span></p>
+    </div>
+    <!-- footer end -->
+</div>
+<!-- main content end -->
+
+<script src="/dashboard/assets/vendor/js/jquery-3.6.0.min.js"></script>
+<script src="/dashboard/assets/vendor/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/dashboard/assets/vendor/js/bootstrap.bundle.min.js"></script>
+<script src="/dashboard/assets/js/main.js"></script>
+</body>
+
+<!-- Mirrored from codebasket.xyz/template/revel_ecom/dashboard-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 20 Oct 2024 18:21:36 GMT -->
+</html>

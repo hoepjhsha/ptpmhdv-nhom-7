@@ -72,9 +72,6 @@ abstract class BaseController extends Controller
      */
     protected array $twigConfig = [];
 
-    /**
-     * @return void
-     */
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger): void
     {
         // Do Not Edit This Line

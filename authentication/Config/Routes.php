@@ -1,12 +1,18 @@
 <?php
 
+use Auth\Controllers\Login;
+use Auth\Controllers\Register;
+use CodeIgniter\Router\RouteCollection;
+
 /**
- * ----------------------------------------------------------------
- *  Define Auth Routes
- * ----------------------------------------------------------------
+ * @var RouteCollection $routes
  */
 $routes->group('auth', static function ($routes) {
-    $routes->get('login', '\Auth\Controllers\Auth::login');
-    $routes->post('login', '\Auth\Controllers\Auth::login');
-    $routes->get('logout', '\Auth\Controllers\Auth::logout');
+    $routes->get('login', [Login::class, 'loginView']);
+    $routes->post('login', [Login::class, 'loginAction']);
+
+    $routes->get('logout', [Login::class, 'logoutAction']);
+
+    $routes->get('register', [Register::class, 'registerView']);
+    $routes->post('register', [Register::class, 'registerAction']);
 });

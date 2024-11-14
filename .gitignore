@@ -65,6 +65,8 @@ writable/debugbar/*
 
 php_errors.log
 
+.php-cs-fixer.cache
+
 #-------------------------
 # User Guide Temp Files
 #-------------------------
@@ -85,6 +87,8 @@ phpunit
 # Composer
 #-------------------------
 vendor/
+!public/assets/vendor/
+!public/dashboard/assets/vendor/
 
 #-------------------------
 # IDE / Development Files
