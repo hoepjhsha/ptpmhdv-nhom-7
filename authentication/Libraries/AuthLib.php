@@ -50,28 +50,30 @@ class AuthLib extends AccountModel
      */
     public function register(): bool
     {
-        $user = $this->where('username', $this->username)->first();
-        if (! $user) {
-            $data = [
-                'username'      => $this->username,
-                'password'      => password_hash($this->password, PASSWORD_BCRYPT),
-                'flag'          => 2,
-                'status'        => 1,
-                'fail_time'     => 0,
-                'last_login_at' => null,
-                'created_at'    => date('Y-m-d H:i:s', time()),
-                'updated_at'    => date('Y-m-d H:i:s', time()),
-            ];
+        $data = [
+            'username'      => $this->username,
+            'password'      => password_hash($this->password, PASSWORD_BCRYPT),
+            'flag'          => 2,
+            'status'        => 1,
+            'fail_time'     => 0,
+            'last_login_at' => null,
+            'created_at'    => date('Y-m-d H:i:s', time()),
+            'updated_at'    => date('Y-m-d H:i:s', time()),
+        ];
 
-            if ($this->insert($data, false)) {
-                session()->set('success', 'Registration successful');
+        if (! $this->validate($data)) {
+            $validationErrors = $this->errors();
+            session()->set('errors', $validationErrors);
 
-                return true;
-            }
-            session()->set('error', 'Failed to register');
-        } else {
-            session()->set('error', 'Username already registered');
+            return false;
         }
+
+        if ($this->insert($data, false)) {
+            session()->set('success', 'Registration successful');
+
+            return true;
+        }
+        session()->set('error', 'Failed to register');
 
         return false;
     }

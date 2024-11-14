@@ -33,7 +33,7 @@ class AccountModel extends Model
         'updated_at',
     ];
     protected $validationRules = [
-        'username' => 'required|alpha_numeric',
+        'username' => 'required|alpha_numeric|is_unique[accounts.username]',
         'password' => 'required',
         'flag'     => 'in_list[0,1,2]',
         'status'   => 'in_list[0,1]',
@@ -42,6 +42,7 @@ class AccountModel extends Model
         'username' => [
             'required'      => 'Username is required.',
             'alpha_numeric' => 'Username must be alphanumeric.',
+            'is_unique'     => 'Sorry. That username has already been taken. Please choose another.',
         ],
         'password' => [
             'required' => 'Password is required.',
