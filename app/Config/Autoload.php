@@ -40,8 +40,9 @@ class Autoload extends AutoloadConfig
      * @var array<string, list<string>|string>
      */
     public $psr4 = [
-        APP_NAMESPACE  => APPPATH,
-        AUTH_NAMESPACE => ROOTPATH . 'authentication',
+        APP_NAMESPACE    => APPPATH,
+        AUTH_NAMESPACE   => ROOTPATH . 'authentication',
+        CLIENT_NAMESPACE => ROOTPATH . 'services/clients',
     ];
 
     /**
