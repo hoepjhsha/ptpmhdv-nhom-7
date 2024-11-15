@@ -1,0 +1,38 @@
+{% extends "layouts/main.twig" %}
+
+{% block content %}
+    <div class="dashboard-breadcrumb mb-30">
+        <h2>Add new User account</h2>
+    </div>
+    <div class="row g-4">
+        <div class="col-xxl-6 col-md-8">
+            <div class="panel">
+                <div class="panel-header">
+                    <h5>Add new User account</h5>
+                </div>
+                <div class="panel-body">
+                    <form action="/admin/users/create" method="post">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label">Username</label>
+                                <input type="text" name="create_username" value="" class="form-control form-control-sm" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Password</label>
+                                <input type="text" name="create_password" value="" class="form-control form-control-sm" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Flag</label>
+                                <input type="text" name="create_flag" value="" class="form-control form-control-sm" required>
+                            </div>
+                            <div class="col-12 d-flex justify-content-end mt-3">
+                                <button type="submit" class="btn btn-primary">Add a new User account</button>
+                                <a href="/admin/users" class="btn btn-secondary ms-2">Cancel</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

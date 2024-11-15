@@ -1,0 +1,29 @@
+{% extends "layouts/main.twig" %}
+
+{% block content %}
+    <div class="dashboard-breadcrumb mb-30">
+        <h2>Edit Category</h2>
+    </div>
+    <div class="row g-4">
+        <div class="col-xxl-6 col-md-8">
+            <div class="panel">
+                <div class="panel-header">
+                    <h5>Edit Category</h5>
+                </div>
+                <div class="panel-body">
+                    <form action="/admin/categories/{{ category.id }}/edit" method="post">
+                        <input type="hidden" name="update_id" value="{{ category.id }}">
+                        <div class="col-12">
+                            <label class="form-label">Category Name</label>
+                            <input type="text" name="update_category_name" value="{{ category.category_name }}" class="form-control form-control-sm" required>
+                        </div>
+                        <div class="col-12 d-flex justify-content-end mt-3">
+                            <button type="submit" class="btn btn-primary">Update Category</button>
+                            <a href="/admin/categories" class="btn btn-secondary ms-2">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

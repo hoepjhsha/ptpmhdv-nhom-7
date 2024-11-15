@@ -8,11 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }} | HDV</title>
 
-    <link rel="shortcut icon" href="favicon.png">
+    <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="/dashboard/assets/vendor/css/all.min.css">
     <link rel="stylesheet" href="/dashboard/assets/vendor/css/sharp-solid.min.css">
     <link rel="stylesheet" href="/dashboard/assets/vendor/css/OverlayScrollbars.min.css">
     <link rel="stylesheet" href="/dashboard/assets/vendor/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="/dashboard/assets/vendor/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/dashboard/assets/vendor/css/daterangepicker.css">
     <link rel="stylesheet" href="/dashboard/assets/vendor/css/select2.min.css">
     <link rel="stylesheet" href="/dashboard/assets/vendor/css/bootstrap.min.css">
     <link rel="stylesheet" href="/dashboard/assets/css/style.css">
@@ -118,10 +120,26 @@
         <div class="main-menu">
             <ul class="sidebar-menu scrollable">
                 <li class="sidebar-item">
+                    <ul class="sidebar-link-group">
+                        <li class="sidebar-dropdown-item">
+                            <a href="/admin/home" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-grid-2"></i></span> <span class="sidebar-txt">Dashboard</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
                     <a role="button" class="sidebar-link-group-title has-sub">Apps</a>
                     <ul class="sidebar-link-group">
                         <li class="sidebar-dropdown-item">
-                            <a href="" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-boxes"></i></span> <span class="sidebar-txt">All Product</span></a>
+                            <a href="/admin/users" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-user-group"></i></span> <span class="sidebar-txt">All User</span></a>
+                        </li>
+                        <li class="sidebar-dropdown-item">
+                            <a href="/admin/items/create" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-plus-square"></i></span> <span class="sidebar-txt">Add Item</span></a>
+                        </li>
+                        <li class="sidebar-dropdown-item">
+                            <a href="/admin/items" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-boxes"></i></span> <span class="sidebar-txt">All Items</span></a>
+                        </li>
+                        <li class="sidebar-dropdown-item">
+                            <a href="/admin/categories" class="sidebar-link"><span class="nav-icon"><i class="fa-light fa-tag"></i></span> <span class="sidebar-txt">Categories</span></a>
                         </li>
                     </ul>
                 </li>

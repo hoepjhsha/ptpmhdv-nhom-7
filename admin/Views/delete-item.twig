@@ -1,0 +1,28 @@
+{% extends "layouts/main.twig" %}
+
+{% block content %}
+    <div class="dashboard-breadcrumb mb-30">
+        <h2>Delete a Item</h2>
+    </div>
+    <div class="row g-4">
+        <div class="col-xxl-6 col-md-8">
+            <div class="panel">
+                <div class="panel-header">
+                    <h5>Delete a Item</h5>
+                </div>
+                <div class="panel-body">
+                    <form action="/admin/items/delete/{{ item.id }}" method="post">
+                        <input type="hidden" name="update_id" value="{{ item.id }}">
+                        <div class="col-12">
+                            <label class="form-label">Do you really want to delete this item?</label>
+                        </div>
+                        <div class="col-12 d-flex justify-content-end mt-3">
+                            <button type="submit" class="btn btn-primary">Yes</button>
+                            <a href="/admin/items" class="btn btn-secondary ms-2">No</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
