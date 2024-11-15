@@ -27,7 +27,7 @@ class Item extends BaseController
     {
         return $this->render('create-item', [
             'title'      => 'Add new Item',
-            'user'       => session()->get('user')['name'],
+            'user'       => ucfirst(session()->get('user')['name']),
             'categories' => (new CatLib())->getCategoriesFromAPI(),
         ]);
     }
@@ -46,12 +46,16 @@ class Item extends BaseController
                 'category_id' => $category_id,
                 'image'       => $image,
             ];
-            $form->createItem($data);
+            if ($form->createItem($data)) {
+                session()->setFlashdata('success', 'Created successfully!');
+            } else {
+                session()->setFlashdata('error', 'Created failed!');
+            }
 
-            return $this->response->redirect('/admin/items/create');
+            return $this->response->redirect('/admin/items');
         }
 
-        return $this->response->redirect('/admin/items/create');
+        return $this->response->redirect('/admin/items');
     }
 
     public function edit($id): string
@@ -69,6 +73,7 @@ class Item extends BaseController
 
         return $this->render('edit-item', [
             'title'      => 'Edit Item',
+            'user'       => ucfirst(session()->get('user')['name']),
             'categories' => (new CatLib())->getCategoriesFromAPI(),
             'item'       => $newItem,
         ]);
@@ -89,19 +94,44 @@ class Item extends BaseController
                 'category_id' => $category_id,
                 'image'       => $image,
             ];
-            $form->updateItem($id, $data);
+            if ($form->updateItem($id, $data)) {
+                session()->setFlashdata('success', 'Updated successfully!');
+            } else {
+                session()->setFlashdata('error', 'Updated failed!');
+            }
 
-            return $this->response->redirect('/admin/items/' . $id . '/edit');
+            return $this->response->redirect('/admin/items');
         }
 
-        return $this->response->redirect('/admin/items/' . $id . '/edit');
+        return $this->response->redirect('/admin/items');
+    }
+
+    public function deleteView($id): string
+    {
+        $lib  = new ItemLib();
+        $item = $lib->getItemByID($id);
+
+        $newItem = [
+            'id' => $id,
+        ];
+
+        return $this->render('delete-item', [
+            'title'      => 'Delete Item',
+            'user'       => ucfirst(session()->get('user')['name']),
+            'categories' => (new CatLib())->getCategoriesFromAPI(),
+            'item'       => $newItem,
+        ]);
     }
 
     public function delete($id): ResponseInterface
     {
-        if ($this->request->getMethod() === 'GET') {
+        if ($this->request->getMethod() === 'POST') {
             $form = new ItemLib();
-            $form->deleteItem($id);
+            if ($form->deleteItem($id)) {
+                session()->setFlashdata('success', 'Deleted successfully!');
+            } else {
+                session()->setFlashdata('error', 'Deleted failed!');
+            }
 
             return $this->response->redirect('/admin/items');
         }

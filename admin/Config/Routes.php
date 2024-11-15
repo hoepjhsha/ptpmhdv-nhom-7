@@ -23,19 +23,22 @@ $routes->group('admin', static function ($routes) {
     $routes->post('categories', [Category::class, 'create']);
     $routes->get('categories/(:num)/edit', [Category::class, 'edit']);
     $routes->post('categories/(:num)/edit', [Category::class, 'update']);
-    $routes->get('categories/delete/(:num)', [Category::class, 'delete']);
+    $routes->post('categories/delete/(:num)', [Category::class, 'delete']);
+    $routes->get('categories/delete/(:num)', [Category::class, 'deleteView']);
 
     $routes->get('items', [Item::class, 'index']);
     $routes->get('items/create', [Item::class, 'createView']);
     $routes->post('items/create', [Item::class, 'create']);
     $routes->get('items/(:num)/edit', [Item::class, 'edit']);
     $routes->post('items/(:num)/edit', [Item::class, 'update']);
-    $routes->get('items/delete/(:num)', [Item::class, 'delete']);
+    $routes->post('items/delete/(:num)', [Item::class, 'delete']);
+    $routes->get('items/delete/(:num)', [Item::class, 'deleteView']);
 
     $routes->get('users', [User::class, 'index']);
     $routes->get('users/create', [User::class, 'createView']);
     $routes->post('users/create', [User::class, 'create']);
     $routes->get('users/(:num)/edit', [User::class, 'edit']);
     $routes->post('users/(:num)/edit', [User::class, 'update']);
-    $routes->get('users/delete/(:num)', [User::class, 'delete']);
+    $routes->get('users/delete/(:num)', [User::class, 'deleteView']);
+    $routes->get('users/delete/(:num)', [User::class, 'deleteView']);
 });

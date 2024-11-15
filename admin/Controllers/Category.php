@@ -17,7 +17,7 @@ class Category extends BaseController
     {
         return $this->render('dashboard-categories', [
             'title'      => 'Categories',
-            'user'       => session()->get('user')['name'],
+            'user'       => ucfirst(session()->get('user')['name']),
             'categories' => (new CatLib())->getCategoriesFromAPI(),
         ]);
     }
@@ -31,7 +31,11 @@ class Category extends BaseController
                 $data = [
                     'category_name' => $category_name_create,
                 ];
-                $form->createCategory($data);
+                if ($form->createCategory($data)) {
+                    session()->setFlashdata('success', 'Created successfully!');
+                } else {
+                    session()->setFlashdata('error', 'Created failed!');
+                }
 
                 return $this->response->redirect('/admin/categories');
             }
@@ -51,6 +55,7 @@ class Category extends BaseController
 
         return $this->render('edit-category', [
             'title'    => 'Edit Category',
+            'user'     => ucfirst(session()->get('user')['name']),
             'category' => $category,
         ]);
     }
@@ -64,7 +69,11 @@ class Category extends BaseController
                 $data = [
                     'category_name' => $category_name_update,
                 ];
-                $form->updateCategory($id, $data);
+                if ($form->updateCategory($id, $data)) {
+                    session()->setFlashdata('success', 'Updated successfully!');
+                } else {
+                    session()->setFlashdata('error', 'Updated failed!');
+                }
 
                 return $this->response->redirect('/admin/categories');
             }
@@ -73,11 +82,27 @@ class Category extends BaseController
         return $this->response->redirect('/admin/categories');
     }
 
+    public function deleteView($id): string
+    {
+        $catLib   = new CatLib();
+        $category = $catLib->getCategoryById($id);
+
+        return $this->render('delete-category', [
+            'title'    => 'Delete Category',
+            'user'     => ucfirst(session()->get('user')['name']),
+            'category' => $category,
+        ]);
+    }
+
     public function delete($id): ResponseInterface
     {
-        if ($this->request->getMethod() === 'GET') {
+        if ($this->request->getMethod() === 'POST') {
             $form = new CatLib();
-            $form->deleteCategory($id);
+            if ($form->deleteCategory($id)) {
+                session()->setFlashdata('success', 'Deleted successfully!');
+            } else {
+                session()->setFlashdata('error', 'Deleted failed!');
+            }
 
             return $this->response->redirect('/admin/categories');
         }

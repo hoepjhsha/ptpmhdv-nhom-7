@@ -7,6 +7,19 @@
             <div class="panel">
                 <div class="panel-header">
                     <h5>All User Accounts</h5>
+
+                    {% if session.getFlashdata('success') %}
+                        <div class="alert alert-success">
+                            {{ session.getFlashdata('success') }}
+                        </div>
+                    {% endif %}
+
+                    {% if session.getFlashdata('error') %}
+                        <div class="alert alert-danger">
+                            {{ session.getFlashdata('error') }}
+                        </div>
+                    {% endif %}
+
                     <div class="btn-box d-flex flex-wrap gap-2">
                         <div id="tableSearch"></div>
                         <div class="btn-box">

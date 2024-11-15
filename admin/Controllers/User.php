@@ -40,7 +40,7 @@ class User extends BaseController
             $username = $this->request->getPost('create_username');
             $password = password_hash($this->request->getPost('create_password'), PASSWORD_DEFAULT);
             $flag     = $this->request->getPost('create_flag');
-            (new UserLib())->createUser([
+            if ((new UserLib())->createUser([
                 'username'      => $username,
                 'password'      => $password,
                 'flag'          => $flag,
@@ -49,12 +49,16 @@ class User extends BaseController
                 'last_login_at' => null,
                 'created_at'    => date('Y-m-d H:i:s'),
                 'updated_at'    => date('Y-m-d H:i:s'),
-            ]);
+            ])) {
+                session()->setFlashdata('success', 'Created successfully!');
+            } else {
+                session()->setFlashdata('error', 'Created failed!');
+            }
 
-            return redirect()->to(base_url('admin/users/create'));
+            return redirect()->to(base_url('admin/users'));
         }
 
-        return redirect()->to(base_url('admin/users/create'));
+        return redirect()->to(base_url('admin/users'));
     }
 
     public function edit($id): string
@@ -86,19 +90,38 @@ class User extends BaseController
                 'fail_time'  => $fail_time,
                 'updated_at' => date('Y-m-d H:i:s'),
             ];
-            $form->updateUser($id, $data);
+            if ($form->updateUser($id, $data)) {
+                session()->setFlashdata('success', 'Updated successfully!');
+            } else {
+                session()->setFlashdata('error', 'Updated failed!');
+            }
 
-            return $this->response->redirect('/admin/users/' . $id . '/edit');
+            return $this->response->redirect('/admin/users');
         }
 
-        return $this->response->redirect('/admin/users/' . $id . '/edit');
+        return $this->response->redirect('/admin/users');
+    }
+
+    public function deleteView($id): string
+    {
+        $account = (new UserLib())->getUserById($id);
+
+        return $this->render('delete-user', [
+            'title'   => 'Users',
+            'user'    => ucfirst(session()->get('user')['name']),
+            'account' => $account,
+        ]);
     }
 
     public function delete($id): ResponseInterface
     {
-        if ($this->request->getMethod() === 'GET') {
+        if ($this->request->getMethod() === 'POST') {
             $form = new UserLib();
-            $form->deleteUser($id);
+            if ($form->deleteUser($id)) {
+                session()->setFlashdata('success', 'Deleted successfully!');
+            } else {
+                session()->setFlashdata('error', 'Deleted failed!');
+            }
 
             return $this->response->redirect('/admin/users');
         }
