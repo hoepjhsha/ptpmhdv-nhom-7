@@ -79,6 +79,7 @@ class Filters extends BaseFilters
                     'auth/login',
                     'auth/logout',
                     'auth/register',
+                    'api/*',
                 ],
             ],
         ],

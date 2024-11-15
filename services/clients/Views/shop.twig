@@ -1,0 +1,58 @@
+{% extends "layouts/main.twig" %}
+
+{% block content %}
+
+    <div class="panel-header">
+        <h5>All Products</h5>
+        <div class="btn-box d-flex flex-wrap gap-2">
+            <div id="tableSearch"></div>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <table class="table table-dashed table-hover digi-dataTable all-product-table table-striped" id="allProductTable">
+            <thead>
+                <tr>
+                    <th class="no-sort">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="markAllProduct">
+                        </div>
+                    </th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="table-product-card">
+                                <div class="part-img">
+                                    <img src="{{ item.image }}" alt="Image">
+                                </div>
+                                <div class="part-txt">
+                                    <span class="product-name">{{ item.name }}</span>
+                                    <span class="product-category">Category: {{ item.category }}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="color: #fd6b7e">{{ item.price }} VND</td>
+                        <td>
+                            <div class="btn-box">
+                                <button><i class="fa-light fa-eye"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="table-bottom-control"></div>
+    </div>
+
+{% endblock %}

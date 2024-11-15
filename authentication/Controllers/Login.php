@@ -4,6 +4,7 @@ namespace Auth\Controllers;
 
 use Auth\Libraries\AuthLib;
 use CodeIgniter\HTTP\ResponseInterface;
+use ReflectionException;
 
 class Login extends BaseController
 {
@@ -24,6 +25,9 @@ class Login extends BaseController
         return $this->render('login', $data);
     }
 
+    /**
+     * @throws ReflectionException
+     */
     public function loginAction(): ResponseInterface
     {
         if ($this->request->getMethod() === 'POST') {
