@@ -1,0 +1,16 @@
+{% include "layouts/header.twig" %}
+
+    <div class="main-content">
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="panel">
+
+                    {% block content %}
+                    {% endblock %}
+
+                </div>
+            </div>
+        </div>
+
+
+{% include "layouts/footer.twig" %}
