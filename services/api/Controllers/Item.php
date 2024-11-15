@@ -23,6 +23,7 @@ class Item extends RestControllers
         if (! $data) {
             return $this->failNotFound('Item not found');
         }
+
         return $this->respond($data);
     }
 
@@ -32,6 +33,7 @@ class Item extends RestControllers
         if (! $this->model->insert($data)) {
             return $this->failValidationErrors($this->model->errors());
         }
+
         return $this->respondCreated($data, 'Item created');
     }
 
@@ -41,6 +43,7 @@ class Item extends RestControllers
         if (! $this->model->update($id, $data)) {
             return $this->failValidationErrors($this->model->errors());
         }
+
         return $this->respondUpdated($data, 'Item updated');
     }
 
@@ -49,6 +52,7 @@ class Item extends RestControllers
         if (! $this->model->delete($id)) {
             return $this->failNotFound('Item not found');
         }
+
         return $this->respondDeleted('Item deleted');
     }
 }

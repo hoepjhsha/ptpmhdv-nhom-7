@@ -13,6 +13,7 @@ class Home extends BaseController
     public function index(): string
     {
         $itemsList = $this->getItemsList();
+
         return $this->render('shop', [
             'items' => $itemsList,
             'title' => 'Shop',
@@ -61,11 +62,13 @@ class Home extends BaseController
         $dataCategories = json_decode($responseCategories, true);
 
         $categoryMap = [];
+
         foreach ($dataCategories as $category) {
             $categoryMap[$category['id']] = $category['category_name'];
         }
 
         $itemsList = [];
+
         foreach ($dataItems as $item) {
             $itemsList[] = [
                 'id'          => $item['id'],

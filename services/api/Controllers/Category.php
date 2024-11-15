@@ -23,6 +23,7 @@ class Category extends RestControllers
         if (! $data) {
             return $this->failNotFound('Category not found');
         }
+
         return $this->respond($data);
     }
 
@@ -32,6 +33,7 @@ class Category extends RestControllers
         if (! $this->model->insert($data)) {
             return $this->failValidationErrors($this->model->errors());
         }
+
         return $this->respondCreated($data, 'Category created');
     }
 
@@ -41,6 +43,7 @@ class Category extends RestControllers
         if (! $this->model->update($id, $data)) {
             return $this->failValidationErrors($this->model->errors());
         }
+
         return $this->respondUpdated($data, 'Category updated');
     }
 
@@ -49,6 +52,7 @@ class Category extends RestControllers
         if (! $this->model->delete($id)) {
             return $this->failNotFound('Category not found');
         }
+
         return $this->respondDeleted('Category deleted');
     }
 }
