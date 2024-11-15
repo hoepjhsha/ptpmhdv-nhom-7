@@ -13,11 +13,12 @@
  | NOTE: changing this will require manually modifying the
  | existing namespaces of App\* namespaced-classes.
  */
+defined('ADMIN_NAMESPACE')   || define('ADMIN_NAMESPACE', 'Admin');
 defined('APP_NAMESPACE')     || define('APP_NAMESPACE', 'App');
+defined('API_NAMESPACE')     || define('API_NAMESPACE', 'Api');
 defined('AUTH_NAMESPACE')    || define('AUTH_NAMESPACE', 'Auth');
 defined('CLIENT_NAMESPACE')  || define('CLIENT_NAMESPACE', 'Client');
 defined('STORAGE_NAMESPACE') || define('STORAGE_NAMESPACE', 'Storage');
-defined('API_NAMESPACE')     || define('API_NAMESPACE', 'Api');
 
 /*
  | --------------------------------------------------------------------
@@ -26,10 +27,11 @@ defined('API_NAMESPACE')     || define('API_NAMESPACE', 'Api');
  |
  | Define the module path
  */
+defined('ADMIN_PATH')   || define('ADMIN_PATH', ROOTPATH . '/admin/');
+defined('API_PATH')     || define('API_PATH', ROOTPATH . '/services/api/');
 defined('AUTH_PATH')    || define('AUTH_PATH', ROOTPATH . '/authentication/');
 defined('CLIENT_PATH')  || define('CLIENT_PATH', ROOTPATH . '/services/clients/');
 defined('STORAGE_PATH') || define('STORAGE_PATH', ROOTPATH . '/services/storage/');
-defined('API_PATH')     || define('API_PATH', ROOTPATH . '/services/api/');
 
 /*
  | --------------------------------------------------------------------------

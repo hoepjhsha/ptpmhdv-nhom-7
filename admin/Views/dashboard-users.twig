@@ -1,0 +1,88 @@
+{% extends "layouts/main.twig" %}
+
+{% block content %}
+
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="panel">
+                <div class="panel-header">
+                    <h5>All User Accounts</h5>
+                    <div class="btn-box d-flex flex-wrap gap-2">
+                        <div id="tableSearch"></div>
+                        <div class="btn-box">
+                            <a href="/admin/users/create" class="btn btn-sm btn-primary"><i class="fa-light fa-plus"></i> Add New</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <table class="table table-dashed table-hover digi-dataTable all-product-table table-striped" id="allProductTable">
+                        <thead>
+                        <tr>
+                            <th class="no-sort">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="markAllProduct">
+                                </div>
+                            </th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Flag</th>
+                            <th>Status</th>
+                            <th>Fail time</th>
+                            <th>Last login at</th>
+                            <th>Created at</th>
+                            <th>Updated at</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for account in accounts %}
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox">
+                                    </div>
+                                </td>
+                                <td>
+                                    {{ account.username }}
+                                </td>
+                                <td>
+                                    {{ account.password }}
+                                </td>
+                                <td>
+                                    {{ account.flag }}
+                                </td>
+                                <td>
+                                    {{ account.status }}
+                                </td>
+                                <td>
+                                    {{ account.fail_timee }}
+                                </td>
+                                <td>
+                                    {{ account.last_login_at }}
+                                </td>
+                                <td>
+                                    {{ account.created_at }}
+                                </td>
+                                <td>{{ account.updated_at }}</td>
+                                <td>
+                                    <div class="btn-box">
+                                        <a href="/admin/users/{{ account.id }}/edit" class="btn btn-sm btn-primary">
+                                            <i class="fa-light fa-pen-to-square"></i>
+                                        </a>
+                                        <a href="/admin/users/delete/{{ account.id }}" class="btn btn-sm btn-primary">
+                                            <i class="fa-light fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="table-bottom-control"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

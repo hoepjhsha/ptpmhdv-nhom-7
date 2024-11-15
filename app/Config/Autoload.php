@@ -41,10 +41,11 @@ class Autoload extends AutoloadConfig
      */
     public $psr4 = [
         APP_NAMESPACE     => APPPATH,
+        ADMIN_NAMESPACE   => ROOTPATH . 'admin',
+        API_NAMESPACE     => ROOTPATH . 'services/api',
         AUTH_NAMESPACE    => ROOTPATH . 'authentication',
         CLIENT_NAMESPACE  => ROOTPATH . 'services/clients',
         STORAGE_NAMESPACE => ROOTPATH . 'services/storage',
-        API_NAMESPACE     => ROOTPATH . 'services/api',
     ];
 
     /**

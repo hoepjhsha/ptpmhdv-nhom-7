@@ -1,0 +1,47 @@
+{% extends "layouts/main.twig" %}
+
+{% block content %}
+    <div class="dashboard-breadcrumb mb-30">
+        <h2>Add new Item</h2>
+    </div>
+    <div class="row g-4">
+        <div class="col-xxl-6 col-md-8">
+            <div class="panel">
+                <div class="panel-header">
+                    <h5>Add new Item</h5>
+                </div>
+                <div class="panel-body">
+                        <form action="/admin/items/create" method="post">
+                            <div class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label">Name</label>
+                                <input type="text" name="create_name" value="" class="form-control form-control-sm" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Image</label>
+                                <input type="text" name="create_image" value="" class="form-control form-control-sm" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Category</label>
+                                <select name="create_category" class="form-select form-select-sm" required>
+                                    <option value="">Select Category</option>
+                                    {% for category in categories %}
+                                        <option value="{{ category.id }}">{{ category.category_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Price</label>
+                                <input type="text" name="create_price" value="" class="form-control form-control-sm" required>
+                            </div>
+                            <div class="col-12 d-flex justify-content-end mt-3">
+                                <button type="submit" class="btn btn-primary">Add a new Item</button>
+                                <a href="/admin/items" class="btn btn-secondary ms-2">Cancel</a>
+                            </div>
+                            </div>
+                        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
