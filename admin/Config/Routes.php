@@ -15,7 +15,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->group('admin', static function ($routes) {
+$routes->group('admin', ['filter' => 'flag'], static function ($routes) {
     $routes->get('/', [Home::class, 'index']);
     $routes->get('home', [Home::class, 'index']);
 
