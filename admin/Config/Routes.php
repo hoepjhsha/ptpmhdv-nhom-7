@@ -31,8 +31,8 @@ $routes->group('admin', ['filter' => 'flag'], static function ($routes) {
     $routes->post('items/create', [Item::class, 'create']);
     $routes->get('items/(:num)/edit', [Item::class, 'edit']);
     $routes->post('items/(:num)/edit', [Item::class, 'update']);
-    $routes->post('items/delete/(:num)', [Item::class, 'delete']);
     $routes->get('items/delete/(:num)', [Item::class, 'deleteView']);
+    $routes->post('items/delete/(:num)', [Item::class, 'delete']);
 
     $routes->get('users', [User::class, 'index']);
     $routes->get('users/create', [User::class, 'createView']);
