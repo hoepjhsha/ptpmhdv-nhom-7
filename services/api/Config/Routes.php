@@ -24,9 +24,9 @@ $routes->group('api', static function ($routes) {
 
     $routes->group('categories', static function ($routes) {
         $routes->get('/', [Category::class, 'index']);
-        $routes->post('/show/(:num)', [Category::class, 'show']);
-        $routes->post('/create', [Category::class, 'create']);
-        $routes->post('/update/(:num)', [Category::class, 'update']);
-        $routes->post('/delete/(:num)', [Category::class, 'delete']);
+        $routes->post('show/(:num)', [Category::class, 'show']);
+        $routes->post('create', [Category::class, 'create']);
+        $routes->post('update/(:num)', [Category::class, 'update']);
+        $routes->post('delete/(:num)', [Category::class, 'delete']);
     });
 });
