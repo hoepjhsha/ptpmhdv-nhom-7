@@ -16,17 +16,17 @@ use CodeIgniter\Router\RouteCollection;
 $routes->group('api', static function ($routes) {
     $routes->group('items', static function ($routes) {
         $routes->get('/', [Item::class, 'index']);
-        $routes->post('/show/(:segment)', [Item::class, 'show/:1']);
-        $routes->post('/create', [Item::class, 'create']);
-        $routes->post('/update/(:segment)', [Item::class, 'update/:1']);
-        $routes->post('/delete/(:segment)', [Item::class, 'delete/:1']);
+        $routes->get('show/(:num)', [Item::class, 'show']);
+        $routes->post('create', [Item::class, 'create']);
+        $routes->post('update/(:num)', [Item::class, 'update']);
+        $routes->post('delete/(:num)', [Item::class, 'delete']);
     });
 
     $routes->group('categories', static function ($routes) {
         $routes->get('/', [Category::class, 'index']);
-        $routes->post('/show/(:segment)', [Category::class, 'show/:1']);
+        $routes->post('/show/(:num)', [Category::class, 'show']);
         $routes->post('/create', [Category::class, 'create']);
-        $routes->post('/update/(:segment)', [Category::class, 'update/:1']);
-        $routes->post('/delete/(:segment)', [Category::class, 'delete/:1']);
+        $routes->post('/update/(:num)', [Category::class, 'update']);
+        $routes->post('/delete/(:num)', [Category::class, 'delete']);
     });
 });
